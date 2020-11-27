@@ -1,0 +1,170 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"/>
+        <title>Welcome to Calcu</title>
+        <style>
+            @keyframes move_wave {
+                0% {
+                    transform: translateX(0) translateZ(0) scaleY(1)
+                }
+
+                50% {
+                    transform: translateX(-25%) translateZ(0) scaleY(0.55)
+                }
+
+                100% {
+                    transform: translateX(-50%) translateZ(0) scaleY(1)
+                }
+            }
+
+            .waveWrapper {
+                overflow: hidden;
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                top: 0;
+                margin: auto;
+            }
+
+            .waveWrapperInner {
+                position: absolute;
+                width: 100%;
+                overflow: hidden;
+                height: 100%;
+                bottom: -1px;
+                background-image: linear-gradient(to top, #753475 20%, #312670 80%);
+            }
+
+            .bgTop {
+                z-index: -5;
+                opacity: 0.5;
+            }
+
+            .bgMiddle {
+                z-index: -10;
+                opacity: 0.75;
+            }
+
+            .bgBottom {
+                z-index: -15;
+            }
+
+            .wave {
+                position: absolute;
+                left: 0;
+                width: 200%;
+                height: 100%;
+                background-repeat: repeat no-repeat;
+                background-position: 0 bottom;
+                transform-origin: center bottom;
+            }
+
+            .waveTop {
+                background-size: 50% 100px;
+            }
+
+            .waveAnimation .waveTop {
+                animation: move-wave 3s;
+                -webkit-animation: move-wave 3s;
+                -webkit-animation-delay: 1s;
+                animation-delay: 1s;
+            }
+
+            .waveMiddle {
+                background-size: 50% 120px;
+            }
+
+            .waveAnimation .waveMiddle {
+                animation: move_wave 10s linear infinite;
+            }
+
+            .waveBottom {
+                background-size: 50% 100px;
+            }
+
+            .waveAnimation .waveBottom {
+                animation: move_wave 15s linear infinite;
+            }
+
+            .footer {
+                text-align: center;
+                font-size: 12px;
+            }
+
+            .inner {
+                position: relative;
+                max-width: 960px;
+                height: 100%;
+                margin: 0 auto;
+                display: flex;
+                flex-direction: column;
+                flex-wrap: nowrap;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                padding: 40px;
+                z-index: 4;
+            }
+        </style>
+
+
+    </h:head>
+    <h:body>
+
+
+        <div class ="inner" style="max-width: 500px; margin: 30px auto 0px auto; padding: 10px; color: white">
+
+            <h1>Hai, Welcome to CALCU!</h1>
+            <br/>
+            <h6>CALCU adalah aplikasi kalkulator sederhana, yang membantu kamu menyelesaikan tugas dengan cepat.</h6>
+            <br/>
+            <h:form >
+                <div class="form-group">
+                    <label>Email</label>
+                    <h:inputText  id="email" label="Email" class="form-control" value="#{userc.email}"  required="true"/>
+                    <b><h:message for="email" style="color: red; font-size: 13px"/></b>
+                    <small id="emailHelp" class="form-text" >Email akan kami gunakan untuk share informasi terbaru terkait CALCU</small>
+                    <br/>
+                    <label>Password</label>
+                    <h:inputSecret label="Password" id="password" class="form-control"  value="#{userc.password}" required="true"/>
+                    <b><h:message for="password"  style="color: red; font-size: 13px"/></b>
+
+                    <b><h:outputText value="#{userc.validation}"  style="color: red; font-size: 13px" class="form-text" /></b>
+                    <br/>
+                    <h:commandButton value="SIGN IN"  class="btn btn-light " action="#{userc.nextpage}" />
+                    <br/>
+                    <br/>
+                    <h6 >Belum punya akun? &nbsp;
+                        <span> <h:button value="SIGN UP"  class="btn btn-dark btn-sm" outcome="signup" /> </span></h6>
+                </div>
+            </h:form>
+
+        </div>
+        <div class="footer">
+            <br/>
+            <br/>
+            <br/>
+            <p>Jessi, Raven  2020 © Tugas 4 Pemrograman Lanjut</p>
+        </div>
+        <div class="waveWrapper waveAnimation">
+            <div class="waveWrapperInner bgTop">
+                <div class="wave waveTop"
+                     style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')"></div>
+            </div>
+            <div class="waveWrapperInner bgMiddle">
+                <div class="wave waveMiddle"
+                     style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')"></div>
+            </div>
+            <div class="waveWrapperInner bgBottom">
+                <div class="wave waveBottom"
+                     style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')"></div>
+            </div>
+        </div>
+    </h:body>
+</html>
+

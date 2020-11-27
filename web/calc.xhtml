@@ -1,0 +1,183 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"/>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/7b59e25381.js" crossorigin="anonymous"></script>
+        <title>Welcome to Calcu</title>
+        <style>
+            @keyframes move_wave {
+                0% {
+                    transform: translateX(0) translateZ(0) scaleY(1)
+                }
+
+                50% {
+                    transform: translateX(-25%) translateZ(0) scaleY(0.55)
+                }
+
+                100% {
+                    transform: translateX(-50%) translateZ(0) scaleY(1)
+                }
+            }
+
+            .waveWrapper {
+                overflow: hidden;
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                top: 0;
+                margin: auto;
+            }
+
+            .waveWrapperInner {
+                position: absolute;
+                width: 100%;
+                overflow: hidden;
+                height: 100%;
+                bottom: -1px;
+                background-image: linear-gradient(to top, #753475 20%, #312670 80%);
+            }
+
+            .bgTop {
+                z-index: -5;
+                opacity: 0.5;
+            }
+
+            .bgMiddle {
+                z-index: -10;
+                opacity: 0.75;
+            }
+
+            .bgBottom {
+                z-index: -15;
+            }
+
+            .wave {
+                position: absolute;
+                left: 0;
+                width: 200%;
+                height: 100%;
+                background-repeat: repeat no-repeat;
+                background-position: 0 bottom;
+                transform-origin: center bottom;
+            }
+
+            .waveTop {
+                background-size: 50% 100px;
+            }
+
+            .waveAnimation .waveTop {
+                animation: move-wave 3s;
+                -webkit-animation: move-wave 3s;
+                -webkit-animation-delay: 1s;
+                animation-delay: 1s;
+            }
+
+            .waveMiddle {
+                background-size: 50% 120px;
+            }
+
+            .waveAnimation .waveMiddle {
+                animation: move_wave 10s linear infinite;
+            }
+
+            .waveBottom {
+                background-size: 50% 100px;
+            }
+
+            .waveAnimation .waveBottom {
+                animation: move_wave 15s linear infinite;
+            }
+
+            .footer {
+                text-align: center;
+                font-size: 12px;
+            }
+
+            .inner {
+                position: relative;
+                max-width: 960px;
+                height: 100%;
+                margin: 0 auto;
+                display: flex;
+                flex-direction: column;
+                flex-wrap: nowrap;
+                padding: 40px;
+                z-index: 4;
+            }
+
+            .btn-space{
+                margin-right: 15px;
+            }
+
+        </style>
+
+
+    </h:head>
+    <h:body>
+
+
+        <div class ="inner" style="max-width: 900px;">
+            <div class="dropdown float-right" >
+                <button class="btn-floating float-right btn-lg black dropdown-toggle btn-sm" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-user-circle" style="font-size: 16px">&nbsp; #{usepc.nama}</i>
+                </button>
+                <br/>
+                <div class="dropdown-menu dropdown-primary">
+                    <a class="dropdown-item" href="index.xhtml"><i class="fas fa-sign-out-alt" style="font-size: 16px">&nbsp;&nbsp;Log-Out</i></a>
+                </div>
+            </div>
+            <div style="margin: auto; padding: 10px; color: white; align-items: center; text-align: center"> 
+                <h1>CALCU</h1>
+                <br/>
+                <h:form id="myform"  >
+                    <div class="form-group">
+                        <label>Masukan angka 1 </label>
+                        <h:inputText  class="form-control"  value="#{cal.angka1}"/>
+                        <label>Masukan angka 2 </label>
+                        <h:inputText  class="form-control"  value="#{cal.angka2}"/>
+                        <label>Operasi</label>
+                        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                            <h:commandButton id="btn1" value="+" class="btn btn-light btn-space"  actionListener="#{cal.clicked}" action="calc.xhtml" />
+                            <h:commandButton id="btn2" value="-" class="btn btn-light btn-space"  actionListener="#{cal.clicked}" action="calc.xhtml" />
+                            <h:commandButton id="btn3" value="*" class="btn btn-light btn-space"  actionListener="#{cal.clicked}" action="calc.xhtml" />
+                            <h:commandButton id="btn4" value="/" class="btn btn-light btn-space"  actionListener="#{cal.clicked}" action="calc.xhtml" />
+                            <h:commandButton id="btn5" value="^" class="btn btn-light btn-space"  actionListener="#{cal.clicked}" action="calc.xhtml" />
+                            <h:commandButton id="btn6" value="!" class="btn btn-light btn-space"  actionListener="#{cal.clicked}" action="calc.xhtml" />
+                            <h:commandButton id="btn7" value="√" class="btn btn-light btn-space"  actionListener="#{cal.clicked}" action="calc.xhtml" />
+                            <h:commandButton id="btn8" value="3√" class="btn btn-light btn-space"  actionListener="#{cal.clicked}" action="calc.xhtml" />
+                        </div>
+                        <label>Hitung</label><br/>
+                        <h:outputText value="#{cal.hitung}" class="form-control"/>
+                        <label>Hasil</label><br/>
+                        <h:outputText value="#{cal.hasil}" class="form-control"/>
+                    </div>
+                </h:form>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Jessi, Raven  2020 © Tugas 4 Pemrograman Lanjut</p>
+        </div>
+        <div class="waveWrapper waveAnimation">
+            <div class="waveWrapperInner bgTop">
+                <div class="wave waveTop"
+                     style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')"></div>
+            </div>
+            <div class="waveWrapperInner bgMiddle">
+                <div class="wave waveMiddle"
+                     style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')"></div>
+            </div>
+            <div class="waveWrapperInner bgBottom">
+                <div class="wave waveBottom"
+                     style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')"></div>
+            </div>
+        </div>
+    </h:body>
+</html>
+
